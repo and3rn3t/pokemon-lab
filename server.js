@@ -1,6 +1,8 @@
 // Import express
 const express = require("express");
 const app = express();
+
+// Array with Pokemon data to use
 const pokemon = [
   {
     name: "Bulbasaur",
@@ -44,5 +46,5 @@ app.get("/pokemon/:index", (req, res) => {
 
 // Server listen on port 3000
 app.listen(3000, () => {
-  console.log("I am listening");
+  console.log("Pokemon Master is listening!");
 });
