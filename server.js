@@ -2,7 +2,6 @@
 const express = require('express');
 const app = express();
 
-// Set up Pokemon database
 const pokemon = [
     {
       name: "Bulbasaur",
