@@ -8,10 +8,15 @@
   </head>
   <body>
     <h1>Welcome to the Pokèdex!</h1>
+    <a href="/pokemon/new">Create a New Pokémon</a>
     <ul class="pokemon">
       <% for( let i = 0; i < pokemons.length; i++ ) { %>
       <li>
         <a href="pokemon/<%= i %>"> <%= pokemons[i].name %> </a>
+        <form action="/pokemon/<%=i; %>?_method=DELETE" method="POST">
+          <input type="submit" value="Delete" />
+        </form>
+        <a href="/pokemon/<%=i; %>/edit">Edit</a>
       </li>
       <% } %>
     </ul>
