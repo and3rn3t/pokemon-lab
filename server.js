@@ -43,7 +43,9 @@ app.get("/pokemon", (req, res) => {
 
 // GET route to display indexed data
 app.get("/pokemon/:index", (req, res) => {
-  res.send(pokemon[req.params.index]);
+  res.render("show.ejs", {
+    pokemon: pokemon[req.params.index],
+  });
 });
 
 // Server listen on port 3000
