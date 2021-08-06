@@ -34,9 +34,11 @@ const pokemon = [
   },
 ];
 
-// GET route to display all data
+// GET route to display index page
 app.get("/pokemon", (req, res) => {
-  res.send(pokemon);
+  res.render("index.ejs", {
+    pokemons: pokemon,
+  });
 });
 
 // GET route to display indexed data
@@ -45,6 +47,6 @@ app.get("/pokemon/:index", (req, res) => {
 });
 
 // Server listen on port 3000
-app.listen(3000, () => {
+app.listen(3000, (req, res) => {
   console.log("Pokemon Master is listening!");
 });
