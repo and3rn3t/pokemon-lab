@@ -9,6 +9,7 @@ app.use(methodOverride("_method"));
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'));
 
 // Import controller
 app.use("/pokemon", require("./controllers/pokemon.js"));

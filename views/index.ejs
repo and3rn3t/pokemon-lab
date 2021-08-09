@@ -4,19 +4,21 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/app.css" />
     <title>Pokédex - Main</title>
   </head>
   <body>
-    <h1>Welcome to Pokédex!</h1>
-    <a href="/pokemon/new">Add to Pokédex</a><br /><br />
+    <img src='/img/pokedex_icon.png' width='100' height='100'><h1>Welcome to Pokédex!</h1><br>
+    <a href="/pokemon/new">Add to Pokédex</a><br /><br /><br />
     <ul class="pokemon">
       <% for( let i = 0; i < pokemons.length; i++ ) { %>
       <li>
         <a href="/pokemon/<%= i %>"> <%= pokemons[i].name %> </a>
-        <a href="/pokemon/<%=i; %>/edit">(Edit)</a>
+        <a href="/pokemon/<%=i; %>/edit"> [Edit]</a><br />
         <form action="/pokemon/<%=i; %>?_method=DELETE" method="POST">
-          <input type="submit" value="Delete" />
+          <input class='buttonize' type="submit" value="Delete" />
         </form>
+        <br />
       </li>
       <% } %>
     </ul>

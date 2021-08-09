@@ -1,0 +1,51 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: darkgrey;
+}
+
+a:link,
+a:visited {
+  background-color: dodgerblue;
+  color: white;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover,
+a:active {
+  background-color: mediumblue;
+}
+
+h1 {
+  font-size: xx-large;
+  display: inline;
+  padding-left: 10px;
+}
+
+h2 {
+  font-size: x-large;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+img {
+  border: solid black;
+  border-radius: 5px;
+}
+
+.buttonize {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+}

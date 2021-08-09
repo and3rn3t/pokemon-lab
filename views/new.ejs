@@ -4,14 +4,17 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/app.css" />
     <title>Pokédex - Add New</title>
   </head>
   <body>
     <h1>Add to Pokédex</h1>
     <form action="/pokemon" method="POST">
       Name: <input type="text" name="name" /><br />
-      Image: <input type="url" name="img" /><br />
-      <input type="submit" name="" value="Create Pokémon" />
+      Image: <input type="url" name="img" /><br /><br />
+      <input type="submit" class="buttonize" name="" value="Create Pokémon" />
     </form>
+    <br />
+    <a href="/pokemon">Back to Index</a>
   </body>
 </html>
