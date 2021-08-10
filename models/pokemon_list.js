@@ -16,6 +16,10 @@ const pokemon = [
     img: "http://img.pokemondb.net/artwork/charmander.jpg",
   },
   {
+    name: "Charmeleon",
+    img: "http://img.pokemondb.net/artwork/charmeleon.jpg",
+  },
+  {
     name: "Charizard",
     img: "http://img.pokemondb.net/artwork/charizard.jpg",
   },

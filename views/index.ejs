@@ -11,18 +11,16 @@
     <img src="/img/pokedex_icon.png" width="100" height="100" />
     <h1>Welcome to Pokédex!</h1>
     <br />
-    <a href="/pokemon/new">Add to Pokédex</a><br /><br /><a href="/users"
-      >Check Out Pokémon Masters!</a
-    ><br /><br /><br />
+    <a href="/pokemon/new">Add to Pokédex</a>
+    <a href="/users">Check Out Pokémon Masters!</a><br /><br /><br />
     <ul class="pokemon">
       <% for( let i = 0; i < pokemons.length; i++ ) { %>
       <li>
         <a href="/pokemon/<%= i %>"> <%= pokemons[i].name %> </a>
-        <a href="/pokemon/<%=i; %>/edit"> [Edit]</a><br />
+        <a href="/pokemon/<%=i; %>/edit" class="smaller"> Edit</a>
         <form action="/pokemon/<%=i; %>?_method=DELETE" method="POST">
-          <input class="buttonize" type="submit" value="Delete" />
+          <input class="buttonize" type="submit" value="Delete" /><br /><br />
         </form>
-        <br />
       </li>
       <% } %>
     </ul>
