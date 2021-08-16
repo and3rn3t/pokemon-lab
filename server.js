@@ -8,6 +8,17 @@ app.use(methodOverride("_method"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
+app.use((req, res, next) => {
+	let logStr = `${req.method} ${req.url}`;
+
+	if(Object.keys(req.body).length !== 0) {
+		logStr += ` -- DATA: ${JSON.stringify(req.body)}`;
+	}
+
+	console.log(logStr);
+	next();
+});
+
 // Import controllers
 app.use("/pokemon", require("./controllers/pokemon.js"));
 app.use("/users", require("./controllers/usersController.js"));

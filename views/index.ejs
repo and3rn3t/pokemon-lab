@@ -16,9 +16,9 @@
     <ul class="pokemon">
       <% for( let i = 0; i < pokemons.length; i++ ) { %>
       <li>
-        <a href="/pokemon/<%= i %>"> <%= pokemons[i].name %> </a>
-        <a href="/pokemon/<%=i; %>/edit" class="smaller"> Edit</a>
-        <form action="/pokemon/<%=i; %>?_method=DELETE" method="POST">
+        <a href="/pokemon/<%= pokemons[i].id %>"> <%= pokemons[i].name %> </a>
+        <a href="/pokemon/<%= pokemons[i].id %>/edit" class="smaller"> Edit</a>
+        <form action="/pokemon/<%=pokemons[i].id; %>?_method=DELETE" method="POST">
           <input class="buttonize" type="submit" value="Delete" /><br /><br />
         </form>
       </li>

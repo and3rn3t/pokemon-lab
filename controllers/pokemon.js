@@ -2,13 +2,14 @@
 const express = require("express");
 const router = express.Router();
 
-const pokemon = require("../models/pokemon_list.js");
+const Pokemon = require("../models").Pokemon;
 
 // GET route to display index page
 router.get("/", (req, res) => {
-    console.log(pokemon);
-  res.render("index.ejs", {
-    pokemons: pokemon,
+  Pokemon.findAll().then((pokemon) => {
+    res.render("index.ejs", {
+      pokemons: pokemon,
+    });
   });
 });
 
@@ -18,36 +19,45 @@ router.get("/new", (req, res) => {
 });
 
 // GET route to display indexed data
-router.get("/:index", (req, res) => {
-  res.render("show.ejs", {
-    pokemon: pokemon[req.params.index],
+router.get("/:id", (req, res) => {
+  Pokemon.findByPk(req.params.id).then((pokemon) => {
+    res.render("show.ejs", {
+      pokemons: pokemon,
+    });
   });
 });
 
 // GET route to edit an existing Pokemon
-router.get("/:index/edit", function (req, res) {
-  res.render("edit.ejs", {
-    pokemon: pokemon[req.params.index],
-    index: req.params.index,
+router.get("/:id/edit", function (req, res) {
+  Pokemon.findByPk(req.params.id).then((pokemon) => {
+    res.render("edit.ejs", {
+      pokemons: pokemon,
+    });
   });
 });
 
 // PUT route to update an existing Pokemon
-router.put("/:index", (req, res) => {
-  pokemon[req.params.index] = req.body;
-  res.redirect("/pokemon");
+router.put("/:id", (req, res) => {
+  Pokemon.update(req.body, {
+    where: { id: req.params.id },
+    returning: true,
+  }).then((pokemon) => {
+    res.redirect("/pokemon");
+  });
 });
 
 // POST route to add new Pokemon
 router.post("/", (req, res) => {
-  pokemon.push(req.body);
-  res.redirect("/pokemon");
+  Pokemon.create(req.body).then((newPokemon) => {
+    res.redirect("/pokemon");
+  });
 });
 
 // DELETE route to delete a Pokemon
-router.delete("/:index", (req, res) => {
-  pokemon.splice(req.params.index, 1);
-  res.redirect("/pokemon");
+router.delete("/:id", (req, res) => {
+  Pokemon.destroy({ where: { id: req.params.id } }).then(() => {
+    res.redirect("/pokemon");
+  });
 });
 
 module.exports = router;
