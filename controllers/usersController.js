@@ -1,12 +1,14 @@
 const express = require("express");
 const router = express.Router();
 
-const users = require("../users");
+const Users = require('../models').Users;
 
-// Index
+// Index route
 router.get("/", (req, res) => {
-  res.render("users/index.ejs", {
-    users: users,
+  Users.findAll().then((users) => {
+    res.render("index.ejs", {
+      users: users,
+    });
   });
 });
 
