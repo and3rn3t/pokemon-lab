@@ -13,7 +13,7 @@
       Name: <input type="text" name="name" value="<%= users.name %>" /><br /><br />
       Username: <input type="text" name="username" value="<%= users.username %>" /><br /><br />
       Password: <input type="text" name="password" value="<%= users.password %>" /><br /><br />
-      <input type="submit" class="buttonize" value="Submit Changes" />
+      <input type="submit" class="buttonize" value="Save Updates" />
     </form>
     <form action="/users/<%= users.id %>?_method=DELETE" method="POST">
       <input type="submit" class="buttonize" value="Delete Master" />

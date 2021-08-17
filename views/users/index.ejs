@@ -16,8 +16,8 @@
     <ul class="users">
       <% for( let i = 0; i < users.length; i++ ) { %>
       <li>
-        <h2><%= users[i].name %></h2>
-        <a href="/users/profile/<%= users[i].id %>/"> Edit</a><br />
+        <h2></h2>
+        <a href="/users/profile/<%= users[i].id %>/"><%= users[i].name %> [Edit]</a><br />
         <form action="/users/<%= users[i].id; %>?_method=DELETE" method="POST">
           <input class="buttonize" type="submit" value="Delete" />
         </form>

@@ -17,7 +17,7 @@
       <% for( let i = 0; i < pokemons.length; i++ ) { %>
       <li>
         <a href="/pokemon/<%= pokemons[i].id %>"> <%= pokemons[i].name %> </a>
-        <a href="/pokemon/<%= pokemons[i].id %>/edit" class="smaller"> Edit</a>
+        <a href="/pokemon/<%= pokemons[i].id %>/edit"> Edit</a>
         <form action="/pokemon/<%=pokemons[i].id; %>?_method=DELETE" method="POST">
           <input class="buttonize" type="submit" value="Delete" /><br /><br />
         </form>
