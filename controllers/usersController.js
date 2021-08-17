@@ -31,8 +31,18 @@ router.get("/login", (req, res) => {
 
 // Login POST route
 router.post("/login", (req, res) => {
-  let index = users.findIndex((user) => user.username === req.body.username && user.password === req.body.password);
-  res.redirect(`users/profile/${index}`);
+  Users.findOne({
+    where: {
+      username: req.body.username,
+      password: req.body.password,
+    },
+  })
+    .then((loggedInPlayer) => {
+      res.redirect(`/users/profile/${loggedInPlayer.id}`);
+    })
+    .catch((err) => {
+      res.redirect("/users");
+    });
 });
 
 // Done - Profile GET route
