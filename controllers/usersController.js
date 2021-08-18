@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const Users = require("../models").Users;
+const Team = require("../models").Team;
 
 // Done - Index route
 router.get("/", (req, res) => {
@@ -47,9 +48,19 @@ router.post("/login", (req, res) => {
 
 // Done - Profile GET route
 router.get("/profile/:id", (req, res) => {
-  Users.findByPk(req.params.id).then((user) => {
-    res.render("users/profile.ejs", {
-      users: user,
+  Users.findByPk(req.params.id, {
+    include: [
+      {
+        model: Team,
+        attributes: ["name"],
+      },
+    ],
+  }).then((user) => {
+    Team.findAll().then((allTeams) => {
+      res.render("users/profile.ejs", {
+        users: user,
+        teams: allTeams,
+      });
     });
   });
 });
