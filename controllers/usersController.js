@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 
 const Users = require("../models").Users;
-const Team = require("../models").Team;
+const Team = require("../models").Teams;
 
-// Done - Index route
+// Index route
 router.get("/", (req, res) => {
   Users.findAll().then((user) => {
     res.render("users/index.ejs", {
@@ -13,19 +13,19 @@ router.get("/", (req, res) => {
   });
 });
 
-// Done - Signup GET route
+// Signup GET route
 router.get("/signup", (req, res) => {
-  res.render("users/signup.ejs");
+  res.render("/signup.ejs");
 });
 
-// Done - Signup POST route
+// Signup POST route
 router.post("/", (req, res) => {
   Users.create(req.body).then((newUser) => {
     res.redirect("/users");
   });
 });
 
-// Done - Login GET route
+// Login GET route
 router.get("/login", (req, res) => {
   res.render("users/login.ejs");
 });
@@ -46,7 +46,7 @@ router.post("/login", (req, res) => {
     });
 });
 
-// Done - Profile GET route
+// Profile GET route
 router.get("/profile/:id", (req, res) => {
   Users.findByPk(req.params.id, {
     include: [
@@ -65,7 +65,7 @@ router.get("/profile/:id", (req, res) => {
   });
 });
 
-// Done - Profile Edit PUT route
+// Profile Edit PUT route
 router.put("/profile/:id", (req, res) => {
   Users.update(req.body, {
     where: { id: req.params.id },
@@ -75,7 +75,7 @@ router.put("/profile/:id", (req, res) => {
   });
 });
 
-// Done - Profile Delete route
+// Profile Delete route
 router.delete("/:id", (req, res) => {
   Users.destroy({ where: { id: req.params.id } }).then(() => {
     res.redirect("/users");
