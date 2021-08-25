@@ -3,6 +3,7 @@ const router = express.Router();
 
 const User = require("../models").User;
 const Team = require("../models").Team;
+const Pokemon = require("../models").Pokemon;
 
 // Index route
 router.get("/", (req, res) => {
@@ -49,11 +50,12 @@ router.post("/login", (req, res) => {
 // Profile GET route
 router.get("/profile/:id", (req, res) => {
   User.findByPk(req.params.id, {
-    include: [Team],
-  }).then((foundUser) => {
+    include: [{ model: Team }, { model: Pokemon }],
+  }).then((singleUser) => {
     Team.findAll().then((allTeams) => {
+      console.log(singleUser);
       res.render("users/profile.ejs", {
-        user: foundUser,
+        user: singleUser,
         teams: allTeams,
       });
     });

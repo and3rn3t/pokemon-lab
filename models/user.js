@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       User.belongsTo(models.Team, { foreignKey: "teamId" });
       User.belongsToMany(models.Pokemon, {
         through: "UserPokemon",
-        foreignKey: "playerId",
+        foreignKey: "userId",
         otherKey: "pokemonId",
       });
     }
