@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
 
-const Users = require("../models").Users;
-const Team = require("../models").Teams;
+const User = require("../models").User;
+const Team = require("../models").Team;
 
 // Index route
 router.get("/", (req, res) => {
-  Users.findAll().then((user) => {
+  User.findAll().then((user) => {
     res.render("users/index.ejs", {
       users: user,
     });
@@ -20,7 +20,7 @@ router.get("/signup", (req, res) => {
 
 // Signup POST route
 router.post("/", (req, res) => {
-  Users.create(req.body).then((newUser) => {
+  User.create(req.body).then((newUser) => {
     res.redirect("/users");
   });
 });
@@ -32,7 +32,7 @@ router.get("/login", (req, res) => {
 
 // Login POST route
 router.post("/login", (req, res) => {
-  Users.findOne({
+  User.findOne({
     where: {
       username: req.body.username,
       password: req.body.password,
@@ -48,17 +48,12 @@ router.post("/login", (req, res) => {
 
 // Profile GET route
 router.get("/profile/:id", (req, res) => {
-  Users.findByPk(req.params.id, {
-    include: [
-      {
-        model: Team,
-        attributes: ["name"],
-      },
-    ],
-  }).then((user) => {
+  User.findByPk(req.params.id, {
+    include: [Team],
+  }).then((foundUser) => {
     Team.findAll().then((allTeams) => {
       res.render("users/profile.ejs", {
-        users: user,
+        user: foundUser,
         teams: allTeams,
       });
     });
@@ -67,7 +62,7 @@ router.get("/profile/:id", (req, res) => {
 
 // Profile Edit PUT route
 router.put("/profile/:id", (req, res) => {
-  Users.update(req.body, {
+  User.update(req.body, {
     where: { id: req.params.id },
     returning: true,
   }).then((user) => {
@@ -76,8 +71,8 @@ router.put("/profile/:id", (req, res) => {
 });
 
 // Profile Delete route
-router.delete("/:id", (req, res) => {
-  Users.destroy({ where: { id: req.params.id } }).then(() => {
+router.delete("profile/:id", (req, res) => {
+  User.destroy({ where: { id: req.params.id } }).then(() => {
     res.redirect("/users");
   });
 });
